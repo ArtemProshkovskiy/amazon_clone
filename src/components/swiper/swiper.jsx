@@ -32,14 +32,14 @@ function ImageSlider() {
             >
                 {images.map((image, index) => (
                     <SwiperSlide key={index} className=""> {/* Centering container */}
-    {image.img.endsWith('.mp4') ? (
-        <video className='w-full h-full object-cover' controls>
-            <source src={image.img} type="video/mp4"/>
-        </video>
-    ) : (
-        <img className='w-full' src={image.img} alt={`Slide ${index + 1}`}/>
-    )}
-</SwiperSlide>
+                        {image.img.endsWith('.mp4') ? (
+                            <video className='w-full h-full object-cover' controls>
+                                <source src={image.img} type="video/mp4"/>
+                            </video>
+                        ) : (
+                            <img className='w-full' src={image.img} alt={`Slide ${index + 1}`}/>
+                        )}
+                    </SwiperSlide>
 
                 ))}
             </Swiper>

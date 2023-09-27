@@ -4,6 +4,8 @@ import SubHeader from "../components/header/subHeader";
 import ImageSlider from "../components/swiper/swiper";
 import Products from "../components/products/Products";
 import BestSellers from "../components/bestSellers/bestSellers";
+import Category from "../components/category/category";
+import Baner from "../components/baner/baner";
 
 function MainPage(props) {
     return (
@@ -13,6 +15,8 @@ function MainPage(props) {
             <ImageSlider></ImageSlider>
             <Products></Products>
             <BestSellers></BestSellers>
+            <Category></Category>
+            <Baner></Baner>
         </div>
     );
 }
