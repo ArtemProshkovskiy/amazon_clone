@@ -2,6 +2,8 @@ import React from 'react';
 import amazonLogo from '../../images/amazon.png';
 import SearchIcon from '@mui/icons-material/Search';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import {Link} from "react-router-dom";
+
 
 function Header(props) {
     return (
@@ -9,7 +11,9 @@ function Header(props) {
             <div className=' max-w-[1300px] mx-auto'>
                 <header className=" text-white flex items-center m-auto justify-between p-2">
                     <div className="header__logo mr-2">
-                        <img src={amazonLogo} alt="Amazon Logo" className="w-24"/>
+                        <Link to='/'>
+                            <img src={amazonLogo} alt="Amazon Logo" className="w-24"/>
+                        </Link>
                     </div>
                     <div className="header__location flex flex-col mr-4">
                         <span>Deliver to:</span>

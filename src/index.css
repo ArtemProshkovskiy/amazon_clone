@@ -4,3 +4,11 @@
 @tailwind utilities;
 
 
+@layer components {
+  .btn {
+    background-color: #F8CA15FF;
+    color: black;
+      padding: 20px 25px;
+    width: 190px;
+  }
+}
