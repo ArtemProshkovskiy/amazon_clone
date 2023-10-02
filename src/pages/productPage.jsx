@@ -3,10 +3,19 @@ import {useParams} from 'react-router-dom';
 import Products from '../data/products.json';
 import StarRatings from "react-star-ratings/build/star-ratings";
 import Header from "../components/header/header";
+import {useDispatch} from 'react-redux';
+import {shoppingCartAdd} from '../features/shoppingCart/shoppingCartSlice'; // Replace './shoppingCartSlice' with the actual path to your slice file.
 
 
 function ProductPage(props) {
     const [product, setProduct] = useState({});
+    const [selectedValue, setSelectedValue] = useState("1");
+
+  // Handle changes in the select input
+  const handleSelectChange = (event) => {
+    const newValue = event.target.value;
+    setSelectedValue(newValue);
+  };
     const {id} = useParams();
 
     useEffect(() => {
@@ -18,6 +27,18 @@ function ProductPage(props) {
             setProduct(foundProduct);
         }
     }, [id]);
+
+    const dispatch = useDispatch();
+
+    function addToCart() {
+        const data = {
+            name: product.title,
+            image: product.image,
+            attribute: product.attribute,
+            counter: selectedValue
+        }
+        dispatch(shoppingCartAdd(data))
+    }
 
     return (
         <div className='bg-background h-full min-h-[100vh]'>
@@ -69,13 +90,14 @@ function ProductPage(props) {
                         <span className='text-green-700 font-normal m-2'>In Stock</span>
                         <div className='flex items-center mb-2 text-left'>
                             <span className='text-base xl:text-lg'>Quantity:</span>
-                            <select className='p-2 bg-white border rounded-md focus:border-indigo-600'>
+                            <select className='p-2 bg-white border rounded-md focus:border-indigo-600' value={selectedValue} // Set the selected value from state
+        onChange={handleSelectChange}>
                                 <option value="1" className="option">1</option>
                                 <option value="2" className="option">2</option>
                                 <option value="3" className="option">3</option>
                             </select>
                         </div>
-                        <button className='btn mt-4 text-center'>Add to Cart</button>
+                        <button onClick={() => addToCart()} className='btn mt-4 text-center'>Add to Cart</button>
                     </div>
                 </div>
             ) : (

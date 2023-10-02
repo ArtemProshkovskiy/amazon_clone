@@ -5,7 +5,7 @@ const initialState = {
     shoppingCart: [],
 };
 
-export const shoppingCartSlice = createSlice({
+const shoppingCartSlice = createSlice({
     name: 'shoppingCart',
     initialState,
     reducers: {
@@ -37,3 +37,4 @@ export const shoppingCartSlice = createSlice({
 });
 
 export const {shoppingCartAdd, ShoppingCartRemove} = shoppingCartSlice.actions;
+export default shoppingCartSlice;
