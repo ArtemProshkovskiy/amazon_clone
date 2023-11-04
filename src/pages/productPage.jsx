@@ -4,18 +4,20 @@ import Products from '../data/products.json';
 import StarRatings from "react-star-ratings/build/star-ratings";
 import Header from "../components/header/header";
 import {useDispatch} from 'react-redux';
-import {shoppingCartAdd} from '../features/shoppingCart/shoppingCartSlice'; // Replace './shoppingCartSlice' with the actual path to your slice file.
+import {shoppingCartAdd} from '../features/shoppingCart/shoppingCartSlice';
+import BackToTop from "../components/footer/BackToTop";
+import Footer from "../components/footer/footer"; // Replace './shoppingCartSlice' with the actual path to your slice file.
 
 
 function ProductPage(props) {
     const [product, setProduct] = useState({});
     const [selectedValue, setSelectedValue] = useState("1");
 
-  // Handle changes in the select input
-  const handleSelectChange = (event) => {
-    const newValue = event.target.value;
-    setSelectedValue(newValue);
-  };
+    // Handle changes in the select input
+    const handleSelectChange = (event) => {
+        const newValue = event.target.value;
+        setSelectedValue(newValue);
+    };
     const {id} = useParams();
 
     useEffect(() => {
@@ -32,16 +34,20 @@ function ProductPage(props) {
 
     function addToCart() {
         const data = {
+            id: product.id,
             name: product.title,
             image: product.image,
             attribute: product.attribute,
-            counter: selectedValue
+            counter: selectedValue,
+            badge: product.badge,
+            price: product.price,
+            brand: product.brand
         }
         dispatch(shoppingCartAdd(data))
     }
 
     return (
-        <div className='bg-background h-full min-h-[100vh]'>
+        <div className='bg-background h-full min-h-[100vh] flex flex-col'>
             <Header></Header>
             {product.id !== undefined ? (
                 <div className='flex max-w-[1300px] mx-auto justify-center'>
@@ -90,8 +96,9 @@ function ProductPage(props) {
                         <span className='text-green-700 font-normal m-2'>In Stock</span>
                         <div className='flex items-center mb-2 text-left'>
                             <span className='text-base xl:text-lg'>Quantity:</span>
-                            <select className='p-2 bg-white border rounded-md focus:border-indigo-600' value={selectedValue} // Set the selected value from state
-        onChange={handleSelectChange}>
+                            <select className='p-2 bg-white border rounded-md focus:border-indigo-600'
+                                    value={selectedValue} // Set the selected value from state
+                                    onChange={handleSelectChange}>
                                 <option value="1" className="option">1</option>
                                 <option value="2" className="option">2</option>
                                 <option value="3" className="option">3</option>
@@ -100,9 +107,11 @@ function ProductPage(props) {
                         <button onClick={() => addToCart()} className='btn mt-4 text-center'>Add to Cart</button>
                     </div>
                 </div>
+
             ) : (
                 <p>Loading...</p>
             )}
+                    <Footer></Footer>
         </div>
     );
 }

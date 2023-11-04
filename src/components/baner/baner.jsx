@@ -1,24 +1,30 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import CloseIcon from '@mui/icons-material/Close';
 
-function Baner(props) {
-  const [Banner, ShowBanner] = useState(true);
+function Banner(props) {
+    const [isBannerVisible, setBannerVisibility] = useState(true);
 
-  function display_None() {
-    ShowBanner(false);
-  }
+    function hideBanner() {
+        setBannerVisibility(false);
+    }
 
-  return (
-    Banner ? (
-      <div className='baner_ad max-w-[1300px] mx-auto mt-4'>
-        <div className='relative'>
-          <div className='absolute right-[15px] top-[15px] cursor-pointer'>
-            <CloseIcon onClick={display_None}></CloseIcon>
-          </div>
-          <img src={require('../../images/banner_image.jpg')} alt="" />
-        </div>
-      </div>
-    ) : (<div className='text-center text-black font-bold'>ad was closed</div>)
-  );
+    return (
+        isBannerVisible ? (
+            <div className='max-w-[1300px] mx-auto mt-4 p-4'>
+                <div className='relative'>
+                    <div className='absolute right-4 top-4 cursor-pointer'>
+                        <CloseIcon onClick={hideBanner} className='text-gray-600 hover:text-gray-800'/>
+                    </div>
+                    <img src={require('../../images/banner_image.jpg')} alt='' className='w-full'/>
+                </div>
+            </div>
+        ) : (
+            <div className='pt-4'>
+
+            </div>
+
+        )
+    );
 }
-export default Baner;
+
+export default Banner;

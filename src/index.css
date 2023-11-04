@@ -2,13 +2,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
 
 @layer components {
   .btn {
     background-color: #F8CA15FF;
     color: black;
       padding: 20px 25px;
-    width: 190px;
+    width: 100%;
+    text-align: center;
+  }
+  .btn:hover {
+    background-color: #a88505;
   }
 }

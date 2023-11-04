@@ -17,12 +17,17 @@ function ImageSlider() {
         {img: require('../../images/carousel_vid.mp4')},
     ];
 
+      const customNavigationStyles = {
+        nextEl: '.swiper-button-next', // Selector for the next button
+        prevEl: '.swiper-button-prev', // Selector for the previous button
+    };
+
     return (
         <div className='h-[600px] max-w-[1300px] mx-auto z-30 '>
             <Swiper
                 spaceBetween={20}
                 slidesPerView={1}
-                navigation={true}
+                navigation={customNavigationStyles}
                 modules={[Navigation, Autoplay]} // Enable Navigation and Autoplay modules
                 autoplay={{
                     delay: 4500,
@@ -30,6 +35,10 @@ function ImageSlider() {
                 pagination={{clickable: true}}
                 className='h-[50%]'
             >
+
+                      <div className="swiper-button-next rounded-full text-white cursor-pointer"></div>
+                <div className="swiper-button-prev rounded-full text-white cursor-pointer"></div>
+
                 {images.map((image, index) => (
                     <SwiperSlide key={index} className=""> {/* Centering container */}
                         {image.img.endsWith('.mp4') ? (

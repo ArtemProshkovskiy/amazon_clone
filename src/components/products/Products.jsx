@@ -15,7 +15,7 @@ function Products(props) {
 
     ]
     return (
-        <div className='max-w-[1300px] mx-auto flex justify-center -mt-72'>
+        <div className='max-w-[1300px] mx-auto flex justify-center -mt-72 z-40'>
              <div className=' flex justify-between flex-wrap center items-center'>
             {home_grid.map(item => (
                 <div  key={item.id} className='cursor-pointer flex justify-between flex-col	 w-[280px] h-[370px]  mr-[20px] ml-[20px] p-[15px] mb-[30px] bg-white'>
